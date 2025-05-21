@@ -41,8 +41,11 @@ Voltar ao menu principal
 Exemplos de Uso
 
 Inserir valores em uma lista, removê-los e buscar valores específicos.
+
 Criar matrizes, inserir valores em posições específicas e buscar valores dentro da matriz.
+
 Utilizar algoritmos de busca linear e binária em coleções de dados.
+
 Traalhar com filas e pilhas simulando operações FIFO e LIFO.
 
 Tratamento de Erros
