@@ -48,4 +48,5 @@ Traalhar com filas e pilhas simulando operações FIFO e LIFO.
 Tratamento de Erros
 
 O sistema valida entradas numéricas e solicita nova entrada em caso de dados inválidos.
+
 Mensagens claras indicam sucesso ou falha nas operações.
