@@ -1,0 +1,609 @@
+using System;
+using System.Collections.Generic;
+
+namespace MenuEstruturasDados
+{
+    // Classes das estruturas de dados
+    public class Vetor
+    {
+        private List<int> elementos = new List<int>();
+
+        public void Inserir(int valor)
+        {
+            elementos.Add(valor);
+            Console.WriteLine($"Valor {valor} inserido.");
+        }
+
+        public void Remover(int valor)
+        {
+            if (elementos.Remove(valor))
+                Console.WriteLine($"Valor {valor} removido.");
+            else
+                Console.WriteLine("Valor não encontrado.");
+        }
+
+        public void Exibir()
+        {
+            if (elementos.Count == 0)
+                Console.WriteLine("Vetor vazio.");
+            else
+                Console.WriteLine("Elementos do vetor: " + string.Join(", ", elementos));
+        }
+
+        public void Buscar(int valor)
+        {
+            int idx = elementos.IndexOf(valor);
+            if (idx >= 0)
+                Console.WriteLine($"Valor {valor} encontrado na posição {idx}.");
+            else
+                Console.WriteLine("Valor não encontrado no vetor.");
+        }
+    }
+
+    public class Matriz
+    {
+        private int[,] matriz;
+        private int linhas;
+        private int colunas;
+
+        public Matriz(int linhas, int colunas)
+        {
+            this.linhas = linhas;
+            this.colunas = colunas;
+            matriz = new int[linhas, colunas];
+        }
+
+        public void Inserir(int linha, int coluna, int valor)
+        {
+            if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas)
+            {
+                matriz[linha, coluna] = valor;
+                Console.WriteLine($"Valor {valor} inserido na posição [{linha},{coluna}].");
+            }
+            else
+            {
+                Console.WriteLine("Posição inválida.");
+            }
+        }
+
+        public void Remover(int linha, int coluna)
+        {
+            if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas)
+            {
+                matriz[linha, coluna] = 0;
+                Console.WriteLine($"Valor removido da posição [{linha},{coluna}].");
+            }
+            else
+            {
+                Console.WriteLine("Posição inválida.");
+            }
+        }
+
+        public void Exibir()
+        {
+            Console.WriteLine("Matriz:");
+            for (int i = 0; i < linhas; i++)
+            {
+                for (int j = 0; j < colunas; j++)
+                {
+                    Console.Write(matriz[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public void Buscar(int valor)
+        {
+            for (int i = 0; i < linhas; i++)
+            {
+                for (int j = 0; j < colunas; j++)
+                {
+                    if (matriz[i, j] == valor)
+                    {
+                        Console.WriteLine($"Valor {valor} encontrado na posição [{i},{j}].");
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("Valor não encontrado.");
+        }
+    }
+
+    public class Lista
+    {
+        private List<int> elementos = new List<int>();
+
+        public void Inserir(int valor)
+        {
+            elementos.Add(valor);
+            Console.WriteLine($"Valor {valor} inserido.");
+        }
+
+        public void Remover(int valor)
+        {
+            if (elementos.Remove(valor))
+                Console.WriteLine($"Valor {valor} removido.");
+            else
+                Console.WriteLine("Valor não encontrado.");
+        }
+
+        public void Exibir()
+        {
+            if (elementos.Count == 0)
+                Console.WriteLine("Lista vazia.");
+            else
+                Console.WriteLine("Elementos da lista: " + string.Join(", ", elementos));
+        }
+
+        public void Buscar(int valor)
+        {
+            int idx = elementos.IndexOf(valor);
+            if (idx >= 0)
+                Console.WriteLine($"Valor {valor} encontrado na posição {idx}.");
+            else
+                Console.WriteLine("Valor não encontrado.");
+        }
+    }
+
+    public class Fila
+    {
+        private Queue<int> fila = new Queue<int>();
+
+        public void Inserir(int valor)
+        {
+            fila.Enqueue(valor);
+            Console.WriteLine($"Valor {valor} inserido na fila.");
+        }
+
+        public void Remover()
+        {
+            if (fila.Count > 0)
+            {
+                int removido = fila.Dequeue();
+                Console.WriteLine($"Valor {removido} removido da fila.");
+            }
+            else
+            {
+                Console.WriteLine("Fila vazia.");
+            }
+        }
+
+        public void Exibir()
+        {
+            if (fila.Count == 0)
+                Console.WriteLine("Fila vazia.");
+            else
+                Console.WriteLine("Elementos da fila: " + string.Join(", ", fila));
+        }
+
+        public void Buscar(int valor)
+        {
+            int idx = 0;
+            foreach (var item in fila)
+            {
+                if (item == valor)
+                {
+                    Console.WriteLine($"Valor {valor} encontrado na posição {idx} da fila.");
+                    return;
+                }
+                idx++;
+            }
+            Console.WriteLine("Valor não encontrado na fila.");
+        }
+    }
+
+    public class Pilha
+    {
+        private Stack<int> pilha = new Stack<int>();
+
+        public void Inserir(int valor)
+        {
+            pilha.Push(valor);
+            Console.WriteLine($"Valor {valor} inserido na pilha.");
+        }
+
+        public void Remover()
+        {
+            if (pilha.Count > 0)
+            {
+                int removido = pilha.Pop();
+                Console.WriteLine($"Valor {removido} removido da pilha.");
+            }
+            else
+            {
+                Console.WriteLine("Pilha vazia.");
+            }
+        }
+
+        public void Exibir()
+        {
+            if (pilha.Count == 0)
+                Console.WriteLine("Pilha vazia.");
+            else
+                Console.WriteLine("Elementos da pilha: " + string.Join(", ", pilha));
+        }
+
+        public void Buscar(int valor)
+        {
+            int[] array = pilha.ToArray(); // índice 0 é o topo
+            int pos = Array.IndexOf(array, valor);
+
+            if (pos >= 0)
+                Console.WriteLine($"Valor {valor} está na pilha na posição {pos} (a partir do topo).");
+            else
+                Console.WriteLine("Valor não encontrado na pilha.");
+        }
+    }
+
+    public static class Pesquisa
+    {
+        public static int BuscaLinear(List<int> lista, int valor)
+        {
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i] == valor)
+                    return i;
+            }
+            return -1;
+        }
+
+        public static int BuscaBinaria(List<int> lista, int valor)
+        {
+            lista.Sort(); // garante ordenação
+            int esquerda = 0;
+            int direita = lista.Count - 1;
+
+            while (esquerda <= direita)
+            {
+                int meio = (esquerda + direita) / 2;
+                if (lista[meio] == valor)
+                    return meio;
+                else if (lista[meio] < valor)
+                    esquerda = meio + 1;
+                else
+                    direita = meio - 1;
+            }
+            return -1;
+        }
+    }
+
+    // Programa principal com menus
+    class Program
+    {
+        static void Main()
+        {
+            bool executar = true;
+            while (executar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU PRINCIPAL ===");
+                Console.WriteLine("1. Vetores");
+                Console.WriteLine("2. Matrizes");
+                Console.WriteLine("3. Trabalhar com Lista");
+                Console.WriteLine("4. Trabalhar com Fila");
+                Console.WriteLine("5. Trabalhar com Pilha");
+                Console.WriteLine("6. Algoritmos de Pesquisa");
+                Console.WriteLine("0. Encerrar");
+                Console.Write("Escolha uma opção: ");
+
+                string opcao = Console.ReadLine();
+
+                switch (opcao)
+                {
+                    case "1": MenuVetor(); break;
+                    case "2": MenuMatriz(); break;
+                    case "3": MenuLista(); break;
+                    case "4": MenuFila(); break;
+                    case "5": MenuPilha(); break;
+                    case "6": MenuPesquisa(); break;
+                    case "0":
+                        executar = false;
+                        Console.WriteLine("Encerrando programa. Obrigado!");
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Pressione Enter para tentar novamente.");
+                        Console.ReadLine();
+                        break;
+                }
+            }
+        }
+
+        static int LerInt(string mensagem)
+        {
+            int valor;
+            Console.Write(mensagem);
+            while (!int.TryParse(Console.ReadLine(), out valor))
+            {
+                Console.Write("Entrada inválida. Tente novamente: ");
+            }
+            return valor;
+        }
+
+        static void Pausa()
+        {
+            Console.WriteLine("Pressione Enter para continuar...");
+            Console.ReadLine();
+        }
+
+        static void MenuVetor()
+        {
+            Vetor vetor = new Vetor();
+            bool voltar = false;
+            while (!voltar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU VETORES ===");
+                Console.WriteLine("1. Inserir elemento");
+                Console.WriteLine("2. Remover elemento");
+                Console.WriteLine("3. Exibir todos os elementos");
+                Console.WriteLine("4. Consultar/Buscar elemento");
+                Console.WriteLine("0. Voltar");
+                Console.Write("Escolha uma opção: ");
+
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1":
+                        int val = LerInt("Digite o valor a inserir: ");
+                        vetor.Inserir(val);
+                        Pausa();
+                        break;
+                    case "2":
+                        val = LerInt("Digite o valor a remover: ");
+                        vetor.Remover(val);
+                        Pausa();
+                        break;
+                    case "3":
+                        vetor.Exibir();
+                        Pausa();
+                        break;
+                    case "4":
+                        val = LerInt("Digite o valor a buscar: ");
+                        vetor.Buscar(val);
+                        Pausa();
+                        break;
+                    case "0":
+                        voltar = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        Pausa();
+                        break;
+                }
+            }
+        }
+
+        static void MenuMatriz()
+        {
+            Console.Clear();
+            Console.WriteLine("=== MENU MATRIZES ===");
+            int linhas = LerInt("Digite o número de linhas: ");
+            int colunas = LerInt("Digite o número de colunas: ");
+            Matriz matriz = new Matriz(linhas, colunas);
+
+            bool voltar = false;
+            while (!voltar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU MATRIZES ===");
+                Console.WriteLine("1. Inserir elemento");
+                Console.WriteLine("2. Remover elemento");
+                Console.WriteLine("3. Exibir matriz");
+                Console.WriteLine("4. Consultar/Buscar elemento");
+                Console.WriteLine("0. Voltar");
+                Console.Write("Escolha uma opção: ");
+
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1":
+                        int lin = LerInt("Linha: ");
+                        int col = LerInt("Coluna: ");
+                        int val = LerInt("Valor: ");
+                        matriz.Inserir(lin, col, val);
+                        Pausa();
+                        break;
+                    case "2":
+                        lin = LerInt("Linha: ");
+                        col = LerInt("Coluna: ");
+                        matriz.Remover(lin, col);
+                        Pausa();
+                        break;
+                    case "3":
+                        matriz.Exibir();
+                        Pausa();
+                        break;
+                    case "4":
+                        val = LerInt("Valor a buscar: ");
+                        matriz.Buscar(val);
+                        Pausa();
+                        break;
+                    case "0":
+                        voltar = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        Pausa();
+                        break;
+                }
+            }
+        }
+
+        static void MenuLista()
+        {
+            Lista lista = new Lista();
+            bool voltar = false;
+            while (!voltar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU LISTA ===");
+                Console.WriteLine("1. Inserir elemento");
+                Console.WriteLine("2. Remover elemento");
+                Console.WriteLine("3. Exibir todos os elementos");
+                Console.WriteLine("4. Consultar/Buscar elemento");
+                Console.WriteLine("0. Voltar");
+                Console.Write("Escolha uma opção: ");
+
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1":
+                        int val = LerInt("Digite o valor a inserir: ");
+                        lista.Inserir(val);
+                        Pausa();
+                        break;
+                    case "2":
+                        val = LerInt("Digite o valor a remover: ");
+                        lista.Remover(val);
+                        Pausa();
+                        break;
+                    case "3":
+                        lista.Exibir();
+                        Pausa();
+                        break;
+                    case "4":
+                        val = LerInt("Digite o valor a buscar: ");
+                        lista.Buscar(val);
+                        Pausa();
+                        break;
+                    case "0":
+                        voltar = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        Pausa();
+                        break;
+                }
+            }
+        }
+
+        static void MenuFila()
+        {
+            Fila fila = new Fila();
+            bool voltar = false;
+            while (!voltar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU FILA ===");
+                Console.WriteLine("1. Inserir elemento");
+                Console.WriteLine("2. Remover elemento");
+                Console.WriteLine("3. Exibir todos os elementos");
+                Console.WriteLine("4. Consultar/Buscar elemento");
+                Console.WriteLine("0. Voltar");
+                Console.Write("Escolha uma opção: ");
+
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1":
+                        int val = LerInt("Digite o valor a inserir: ");
+                        fila.Inserir(val);
+                        Pausa();
+                        break;
+                    case "2":
+                        fila.Remover();
+                        Pausa();
+                        break;
+                    case "3":
+                        fila.Exibir();
+                        Pausa();
+                        break;
+                    case "4":
+                        val = LerInt("Digite o valor a buscar: ");
+                        fila.Buscar(val);
+                        Pausa();
+                        break;
+                    case "0":
+                        voltar = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        Pausa();
+                        break;
+                }
+            }
+        }
+
+        static void MenuPilha()
+        {
+            Pilha pilha = new Pilha();
+            bool voltar = false;
+            while (!voltar)
+            {
+                Console.Clear();
+                Console.WriteLine("=== MENU PILHA ===");
+                Console.WriteLine("1. Inserir elemento");
+                Console.WriteLine("2. Remover elemento");
+                Console.WriteLine("3. Exibir todos os elementos");
+                Console.WriteLine("4. Consultar/Buscar elemento");
+                Console.WriteLine("0. Voltar");
+                Console.Write("Escolha uma opção: ");
+
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1":
+                        int val = LerInt("Digite o valor a inserir: ");
+                        pilha.Inserir(val);
+                        Pausa();
+                        break;
+                    case "2":
+                        pilha.Remover();
+                        Pausa();
+                        break;
+                    case "3":
+                        pilha.Exibir();
+                        Pausa();
+                        break;
+                    case "4":
+                        val = LerInt("Digite o valor a buscar: ");
+                        pilha.Buscar(val);
+                        Pausa();
+                        break;
+                    case "0":
+                        voltar = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        Pausa();
+                        break;
+                }
+            }
+        }
+
+        static void MenuPesquisa()
+        {
+            Console.Clear();
+            Console.WriteLine("=== ALGORITMOS DE PESQUISA ===");
+            List<int> lista = new List<int>();
+            int n = LerInt("Quantos elementos deseja inserir? ");
+            for (int i = 0; i < n; i++)
+            {
+                lista.Add(LerInt($"Elemento {i + 1}: "));
+            }
+
+            Console.WriteLine("1. Busca Linear");
+            Console.WriteLine("2. Busca Binária");
+            int op = LerInt("Escolha o algoritmo: ");
+            int valor = LerInt("Valor a buscar: ");
+            int pos = -1;
+
+            if (op == 1)
+                pos = Pesquisa.BuscaLinear(lista, valor);
+            else if (op == 2)
+                pos = Pesquisa.BuscaBinaria(lista, valor);
+
+            if (pos >= 0)
+                Console.WriteLine($"Valor {valor} encontrado na posição {pos}.");
+            else
+                Console.WriteLine("Valor não encontrado.");
+
+            Pausa();
+        }
+    }
+}
