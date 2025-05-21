@@ -12,7 +12,7 @@ Visual Studio 2022 ou superior (ou Visual Studio Code com extensão C#)
 Passo a passo
 Clone o repositório:
 bash
-git (https://github.com/Viktorkrl/MenuEstruturadeDados)
+git clone (https://github.com/Viktorkrl/MenuEstruturadeDados)
 Abra a solução ou projeto no Visual Studio.
 
 Compile o projeto (Ctrl+Shift+B).
